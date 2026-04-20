@@ -1,1 +1,50 @@
-export default () => ({});
+/* module.exports = ({ env }) => ({
+  // ...
+  email: {
+    provider: 'sendmail',
+    providerOptions: {
+      dkim: {
+        privateKey: 'replace-with-dkim-private-key',
+        keySelector: 'abcd', // the same as the one set in DNS txt record, use online dns lookup tools to be sure that is retreivable
+      },
+    },
+    settings: {
+      defaultFrom: 'myemail@protonmail.com',
+      defaultReplyTo: 'myemail@protonmail.com',
+    },
+  },
+  // ...
+}); */
+
+module.exports = ({ env }) => ({
+  email: {
+    config: {
+      provider: 'nodemailer',
+      providerOptions: {
+        host: 'smtp.gmail.com',
+        port: 587,
+        auth: {
+          user: env('GMAIL_USER'),
+          pass: env('GMAIL_PASS'), // Use the 16-character App Password here
+        },
+      },
+      settings: {
+        defaultFrom: env('GMAIL_USER'),
+        defaultReplyTo: env('GMAIL_USER'),
+      },
+    },
+  },
+
+  documentation: {
+    enabled: true,
+    config: {
+      // 可以加 Swagger UI 嘅設定，例如 info
+      info: {
+        title: 'My API',
+        description: 'Strapi API documentation',
+        version: '1.0.0',
+      },
+    },
+  },
+
+});

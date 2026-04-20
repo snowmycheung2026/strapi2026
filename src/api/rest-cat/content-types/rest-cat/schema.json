@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rest_cats",
+  "info": {
+    "singularName": "rest-cat",
+    "pluralName": "rest-cats",
+    "displayName": "Rest_Cat"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Restaurant_Type": {
+      "type": "string"
+    },
+    "Restaurant_Desc": {
+      "type": "blocks"
+    },
+    "restaurants": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::restaurant.restaurant",
+      "inversedBy": "rest_cats"
+    }
+  }
+}
